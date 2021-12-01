@@ -1,5 +1,5 @@
 function computerPlay() {
-  // returns random integer between 0 and max(exclusive of max)
+  // returns randomNumber between 0 and max(exclusive of max)
   function getRandomNumber(max) {
     return Math.floor(Math.random() * max);
   }
@@ -22,4 +22,48 @@ function playerPlay() {
     }
   }
 }
+
+function rockVersus(computerChoice) {
+  if (computerChoice == "rock") {
+    return "Draw!";
+  } else if (computerChoice == "scissors") {
+    return "You win! Rock beats Scissors.";
+  } else if (computerChoice == 'paper') {
+    return "You lose! Paper beats rock.";
+  }
+}
   
+
+function scissorsVersus(computerChoice) {
+  if (computerChoice == "rock") {
+    return "You lose! Rock beats scissors.";
+  } else if (computerChoice == "scissors") {
+    return "Draw!";
+  } else if (computerChoice == 'paper') {
+    return "You win! Scissors beats paper.";
+  }
+}
+  
+function paperVersus(computerChoice) {
+  if (computerChoice == "rock") {
+    return "You win! Paper beats rock.";
+  } else if (computerChoice == "scissors") {
+    return "You lose! Scissors beats paper.";
+  } else if (computerChoice == 'paper') {
+    return "Draw!";
+  }
+}
+ 
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection == 'rock') {
+    return rockVersus(computerSelection);
+  } else if (playerSelection == 'paper') {
+    return paperVersus(computerSelection);
+  } else if (playerSelection == 'scissors') {
+    return scissorsVersus(computerSelection);
+  }
+}
+
+const playerSelection = playerPlay();
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
