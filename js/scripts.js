@@ -64,6 +64,29 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = playerPlay();
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+
+let numberOfRounds = parseInt(prompt("How many rounds do you want to play? (Max: 10)"));
+
+if (numberOfRounds > 0 && numberOfRounds <= 10) {
+  game(numberOfRounds);
+} else {
+  let keepGoing = true;
+
+  while (keepGoing) {
+    numberOfRounds = parseInt(prompt("Haha, real funny. So, how many rounds do you want to play? (Max: 10)"));
+    if (numberOfRounds > 0 && numberOfRounds <= 10) {
+      keepGoing = false;
+      game(numberOfRounds);
+    }
+  }
+}
+
+function game(numberOfRounds) {
+  console.log(`Playing ${numberOfRounds} rounds.`);
+  for (let i = 1; i <= numberOfRounds; i++) {
+    console.log(`Round #${i}`);
+    const playerSelection = playerPlay();
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+  }
+}
