@@ -8,3 +8,18 @@ function computerPlay() {
   
   return choices[randomNumber];
 }
+
+function playerPlay() {
+  const choices = ["rock", "paper", "scissors"];
+  let keepGoing = true;
+  
+  while (keepGoing) {
+    let userChoice = prompt("Please enter rock, paper, or scissors.").trim().toLowerCase();
+  
+    if (choices.includes(userChoice)) {
+      keepGoing = false;
+      return userChoice;
+    }
+  }
+}
+  
