@@ -14,27 +14,18 @@ function playerPlay(e) {
   const choice = e.target.textContent.toLowerCase();
   console.log(`You chose ${choice}.`);
   return choice;
-//  const choices = ["rock", "paper", "scissors"];
-//  let keepGoing = true;
-//  
-//  while (keepGoing) {
-//    let userChoice = prompt("Please enter rock, paper, or scissors.").trim().toLowerCase();
-//  
-//    if (choices.includes(userChoice)) {
-//      keepGoing = false;
-//      return userChoice;
-//    }
-//  }
+
 }
 
 function rockVersus(computerChoice) {
   if (computerChoice == "rock") {
+    increaseDraws();
     return "Draw!";
   } else if (computerChoice == "scissors") {
-    increaseUserWins();
+    increaseUserScore();
     return "You win! Rock beats Scissors.";
   } else if (computerChoice == 'paper') {
-    increaseCpuWins();
+    increaseCpuScore();
     return "You lose! Paper beats rock.";
   }
 }
@@ -42,24 +33,26 @@ function rockVersus(computerChoice) {
 
 function scissorsVersus(computerChoice) {
   if (computerChoice == "rock") {
-    increaseCpuWins();
+    increaseCpuScore();
     return "You lose! Rock beats scissors.";
   } else if (computerChoice == "scissors") {
+    increaseDraws();
     return "Draw!";
   } else if (computerChoice == 'paper') {
-    increaseUserWins();
+    increaseUserScore();
     return "You win! Scissors beats paper.";
   }
 }
   
 function paperVersus(computerChoice) {
   if (computerChoice == "rock") {
-    increaseUserWins();
+    increaseUserScore();
     return "You win! Paper beats rock.";
   } else if (computerChoice == "scissors") {
-    increaseCpuWins();
+    increaseCpuScore();
     return "You lose! Scissors beats paper.";
   } else if (computerChoice == 'paper') {
+    increaseDraws();
     return "Draw!";
   }
 }
@@ -79,40 +72,50 @@ function playRound(e) {
 }
 
 
-// let numberOfRounds = parseInt(prompt("How many rounds do you want to play? (Max: 10)"));
+let userScore;
+let cpuScore;
+let draws;
+initializeGame();
 
-// if (numberOfRounds > 0 && numberOfRounds <= 10) {
-//   game(numberOfRounds);
-// } else {
-//   let keepGoing = true;
-// 
-//   while (keepGoing) {
-//     numberOfRounds = parseInt(prompt("Haha, real funny. So, how many rounds do you want to play? (Max: 10)"));
-//     if (numberOfRounds > 0 && numberOfRounds <= 10) {
-//       keepGoing = false;
-//       game(numberOfRounds);
-//     }
-//   }
-// }
-
-//  function game(numberOfRounds) {
-//    console.log(`Playing ${numberOfRounds} rounds.`);
-//    for (let i = 1; i <= numberOfRounds; i++) {
-//      console.log(`Round #${i}`);
-//      console.log(playRound(playerSelection, computerSelection));
-//    }
-//  }
-
-
-let userWins = 0;
-let cpuWins = 0;
-
-function increaseUserWins() {
-  userWins += 1;
+function initializeGame() {
+  clearScoreboard();
+  updateUserScore();
+  updateCpuScore();
+  updateDraws();
 }
 
-function increaseCpuWins() {
-  cpuWins += 1;
+function clearScoreboard() {
+  userScore = 0;
+  cpuScore = 0;
+  draws = 0;
+}
+
+function updateUserScore() {
+  document.getElementById('userScore').textContent = userScore;
+}
+
+function updateCpuScore() {
+  document.getElementById('cpuScore').textContent = cpuScore;
+}
+
+function updateDraws() {
+  document.getElementById('draws').textContent = draws;            
+}
+
+
+function increaseUserScore() {
+  userScore += 1;
+  updateUserScore();
+}
+
+function increaseCpuScore() {
+  cpuScore += 1;
+  updateCpuScore();
+}
+
+function increaseDraws() {
+  draws += 1;
+  updateDraws();
 }
 
 
