@@ -5,15 +5,17 @@ function computerPlay() {
   }
   const randomNumber = getRandomNumber(3);
   const choices = ["rock", "paper", "scissors"];
-  const cpuChoice = choices[randomNumber];
-  console.log(`The computer chose ${cpuChoice}.`);
-  return cpuChoice;
+  const action = choices[randomNumber];
+  // console.log(`The computer chose ${cpuChoice}.`);
+  updateCpuAction(action);
+  return action;
 }
 
 function playerPlay(e) {
-  const choice = e.target.textContent.toLowerCase();
-  console.log(`You chose ${choice}.`);
-  return choice;
+  const action = e.target.textContent.toLowerCase();
+  // console.log(`You chose ${choice}.`);
+  updatePlayerAction(action);
+  return action;
 
 }
 
@@ -22,7 +24,7 @@ function rockVersus(computerChoice) {
     increaseDraws();
     return "Draw!";
   } else if (computerChoice == "scissors") {
-    increaseUserScore();
+    increasePlayerScore();
     return "You win! Rock beats Scissors.";
   } else if (computerChoice == 'paper') {
     increaseCpuScore();
@@ -39,14 +41,14 @@ function scissorsVersus(computerChoice) {
     increaseDraws();
     return "Draw!";
   } else if (computerChoice == 'paper') {
-    increaseUserScore();
+    increasePlayerScore();
     return "You win! Scissors beats paper.";
   }
 }
   
 function paperVersus(computerChoice) {
   if (computerChoice == "rock") {
-    increaseUserScore();
+    increasePlayerScore();
     return "You win! Paper beats rock.";
   } else if (computerChoice == "scissors") {
     increaseCpuScore();
@@ -58,6 +60,9 @@ function paperVersus(computerChoice) {
 }
  
 function playRound(e) {
+  if (playerScore == 5 || cpuScore == 5) {
+    initializeGame();
+  }
   const playerSelection = playerPlay(e);
   const computerSelection = computerPlay();
   let result;
@@ -68,30 +73,33 @@ function playRound(e) {
   } else if (playerSelection == 'scissors') {
     result = scissorsVersus(computerSelection);
   }
-  console.log(result);
+  // console.log(result);
+  updateRoundResult(result);
+  checkGameOver();
 }
 
 
-let userScore;
+let playerScore;
 let cpuScore;
 let draws;
 initializeGame();
 
 function initializeGame() {
   clearScoreboard();
-  updateUserScore();
+  updatePlayerScore();
   updateCpuScore();
   updateDraws();
 }
 
 function clearScoreboard() {
-  userScore = 0;
+  playerScore = 0;
   cpuScore = 0;
   draws = 0;
+  updateUi('winner', '');
 }
 
-function updateUserScore() {
-  document.getElementById('userScore').textContent = userScore;
+function updatePlayerScore() {
+  document.getElementById('playerScore').textContent = playerScore;
 }
 
 function updateCpuScore() {
@@ -102,10 +110,28 @@ function updateDraws() {
   document.getElementById('draws').textContent = draws;            
 }
 
+function updateUi(id, message) {
+  document.getElementById(`${id}`).textContent = message;
+}
 
-function increaseUserScore() {
-  userScore += 1;
-  updateUserScore();
+function updatePlayerAction(action) {
+  let message = `You chose ${action}.`;
+  updateUi('playerAction', message);
+}
+
+function updateCpuAction(action) {
+  let message = `The computer chose ${action}.`;
+  updateUi('cpuAction', message);
+}
+
+function updateRoundResult(message) {
+  updateUi('roundResult', message);
+}
+
+
+function increasePlayerScore() {
+  playerScore += 1;
+  updatePlayerScore();
 }
 
 function increaseCpuScore() {
@@ -118,6 +144,13 @@ function increaseDraws() {
   updateDraws();
 }
 
+function checkGameOver() {
+  if (playerScore == 5) {
+    updateUi('winner', "You win, you're the champion!");
+  } else if (cpuScore == 5) {
+    updateUi('winner', 'You lost. Womp womp wooooomp.');
+  }
+}
 
 
 // Events
