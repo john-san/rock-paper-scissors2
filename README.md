@@ -1,4 +1,3 @@
-# rock-paper-scissors2
 # TOP Project #3: Rock-Paper-Scissors 
 This project is about creating the classic game, Rock-Paper-Scissors. 
 
