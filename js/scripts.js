@@ -25,7 +25,7 @@ function rockVersus(computerChoice) {
     return "Draw!";
   } else if (computerChoice == "scissors") {
     increasePlayerScore();
-    return "You win! Rock beats Scissors.";
+    return "You win! Rock beats scissors.";
   } else if (computerChoice == 'paper') {
     increaseCpuScore();
     return "You lose! Paper beats rock.";

@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap');@import url('https://fonts.googleapis.com/css2?family=Spartan&display=swap');
+:root {
+  --main-text-color: #000;
+  --main-button-color: #474056;
+  --light-button-color: #757083;
+  --secondary-color: #8A95A5;
+  --tertiary-color: #B9C6AE;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+}
+
+body {
+  font-size: 18px;
+  margin-top: 50px;
+  color: var(--main-text-color);
+  background: var(--secondary-color);
+  font-family: 'Spartan', sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--main-button-color);
+  border-color: var(--main-button-color);
+}
+.btn-primary:hover {
+  background-color: var(--light-button-color);
+  border-color: var(--light-button-color);
+}
+.btn-primary:focus {
+  background-color: var(--main-button-color);
+  border-color: var(--main-button-color);
+  box-shadow: 0 0 0 0.25rem rgb(156 49 253 / 50%);
+}
+
+
+
+.scoreboard {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  background-color: var(--tertiary-color);
+  border: solid 2px black;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 8px 0;
+  border-radius: 10px;
+}
+
+.scoreboard span:nth-child(even) {
+  margin-left: -15px;
+}
+
+.actions {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.messages {
+    background: var(--tertiary-color);
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 16px 0 4px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .scoreboard {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .scoreboard span:nth-child(even) {
+    margin-left: -35px;
+  }
+}
