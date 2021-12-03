@@ -67,11 +67,12 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  .scoreboard {
+  .scoreboard, .messages {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
   }
+  
   .scoreboard span:nth-child(even) {
     margin-left: -35px;
   }
